@@ -15,7 +15,7 @@ public class MybatisGenerate {
         boolean overwrite = true;
         //指定逆向工程配置文件,以下两种方式都可以:getClassLoader()--不加"/";getClass()--加"/".
 //        InputStream in = MybatisGenerate.class.getClassLoader().getResourceAsStream("generatorConfig.xml");
-        InputStream in = MybatisGenerate.class.getClass().getResourceAsStream("/generatorConfig.xml");
+        InputStream in = MybatisGenerate.class.getResourceAsStream("/generatorConfig.xml");
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(in);
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);
