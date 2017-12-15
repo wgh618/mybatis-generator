@@ -4,6 +4,7 @@ import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +13,11 @@ public class MybatisGenerate {
 
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
-        //指定 逆向工程配置文件
-        File configFile = new File("F:\\WorkSpace\\mybatis-generator\\src\\main\\resources\\generatorConfig.xml");
+        //指定逆向工程配置文件,以下两种方式都可以:getClassLoader()--不加"/";getClass()--加"/".
+//        InputStream in = MybatisGenerate.class.getClassLoader().getResourceAsStream("generatorConfig.xml");
+        InputStream in = MybatisGenerate.class.getClass().getResourceAsStream("/generatorConfig.xml");
         ConfigurationParser cp = new ConfigurationParser(warnings);
-        Configuration config = cp.parseConfiguration(configFile);
+        Configuration config = cp.parseConfiguration(in);
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);
         MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config,
                 callback, warnings);
